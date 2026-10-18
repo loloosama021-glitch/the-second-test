@@ -2,205 +2,249 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>الاختبار التاني 💗</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: Tahoma, Arial, sans-serif;
-  background: linear-gradient(135deg, #fff7fb, #ffd9eb);
-  color: #63364e;
-  text-align: center;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
+  justify-content: center;
+  padding: 18px;
+  font-family: Tahoma, Arial, sans-serif;
+  text-align: center;
+  color: #713c59;
+  background: linear-gradient(135deg, #fffaff, #ffd8e9);
 }
 
 .card {
-  background: white;
   width: 100%;
   max-width: 430px;
-  padding: 28px 20px;
-  border-radius: 25px;
-  box-shadow: 0 8px 30px #e7a4c755;
+  padding: 27px 20px;
+  border-radius: 28px;
+  background: white;
+  box-shadow: 0 10px 35px #d981ae33;
+  animation: appear .5s ease;
 }
 
-h1 {
-  color: #e75b9b;
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-p {
-  line-height: 1.9;
+h1 { color: #e45d9d; }
+p { line-height: 2; }
+
+input {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #f4b6d4;
+  border-radius: 14px;
+  text-align: center;
+  font-size: 18px;
+  margin: 12px 0;
 }
 
 button {
-  display: block;
   width: 100%;
-  border: none;
-  border-radius: 15px;
   padding: 14px;
   margin-top: 12px;
-  background: #f5a5cc;
-  color: #51253e;
+  border: none;
+  border-radius: 15px;
+  background: #f6acd0;
+  color: #65314d;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }
 
-button:hover {
-  background: #f080b5;
+button:hover { background: #f28cbd; }
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  animation: float 5s linear forwards;
+  z-index: 5;
 }
 
-.small {
-  font-size: 13px;
-  color: #a46d8a;
+@keyframes float {
+  to { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
 }
 
-#progress {
-  color: #d85a98;
-  font-size: 14px;
-}
+.small { font-size: 12px; color: #b17c98; }
 </style>
 </head>
 
 <body>
 
 <div class="card" id="app">
-  <div style="font-size:45px">🎀💗🎀</div>
-  <h1>الاختبار التاني</h1>
-
+  <div style="font-size:48px">🎀💗🎀</div>
+  <h1>A Surprise For Ibrahim</h1>
   <p>
-    🚨 تنبيه مهم يا إبراهيم!<br>
-    تم اختيارك لدخول اختبار مصيري 😂
+    استنى يا إبراهيم! 👀❤️<br>
+    المفاجأة دي معمولة مخصوص ليك.<br>
+    بس الأول لازم تثبت إنك الشخص المقصود! 🔐
   </p>
 
-  <p>
-    الاختبار ده معمول مخصوص ليك،
-    وممنوع الاستعانة بصديق أو طلب مساعدة لولو! 👀
-  </p>
+  <input id="password" type="password"
+         placeholder="اكتب التاريخ السري">
 
-  <button onclick="startQuiz()">يلا نبدأ 😂</button>
-  <p class="small">نتمنى لك التوفيق يا أستاذ إبراهيم 💗</p>
+  <button onclick="checkPassword()">افتح مفاجأتك 💗</button>
+  <p id="error" style="color:#d94c86"></p>
+  <p class="small">A little surprise, made with love 🎁</p>
 </div>
 
 <script>
+const app = document.getElementById("app");
+
+function hearts() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = ["💗","💕","💖","🤍","🎀"][
+    Math.floor(Math.random() * 5)
+  ];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (18 + Math.random() * 20) + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(hearts, 700);
+
+function checkPassword() {
+  const value = document.getElementById("password").value.trim()
+    .replaceAll("/", "")
+    .replaceAll("-", "")
+    .replaceAll(".", "")
+    .replaceAll(" ", "");
+
+  if (value === "2272026") {
+    showWelcome();
+  } else {
+    document.getElementById("error").textContent =
+      "لأ يا إبراهيم 😂 جرّب تاني، ركّز في التاريخ! 💗";
+  }
+}
+
+function showWelcome() {
+  app.innerHTML = `
+    <div style="font-size:50px">🥹💗🎁</div>
+    <h1>عرفتها يا إبراهيم!</h1>
+    <p>
+      التاريخ ده مش مجرد أرقام بالنسبة لي،
+      ده يوم بدأ فيه فصل جديد في حكايتنا. ❤️
+    </p>
+    <p>جاهز تدخل الاختبار التاني؟ 😂</p>
+    <button onclick="showQuiz()">ابدأ الاختبار 🎀</button>
+  `;
+}
+
 const questions = [
   {
-    q: "أول سؤال يا إبراهيم 😂 إنت مين؟",
-    a: [
-      "أجمل واحد في الدنيا 😎",
-      "شخصية غامضة جدًا 👀",
-      "الضحية الرسمية للاختبار 😂"
-    ],
-    correct: 2,
-    joke: "الإجابة كلها صح، بس إنت الضحية النهارده 😂"
+    q: "مين صاحب المفاجأة دي؟ 😂",
+    answers: ["لولو طبعًا 💗", "محقق المباحث 👮", "مش عارف 😭"],
+    correct: 0,
+    message: "أيوه يا سيدي، لولو بنفسها عملتلك المفاجأة! 😂❤️"
   },
   {
     q: "لما لولو تقولك مفيش حاجة، تعمل إيه؟ 👀",
-    a: [
-      "أصدقها فورًا 😂",
-      "أسألها تاني وأطمن عليها ❤️",
-      "أهرب قبل المصيبة 😭"
-    ],
+    answers: ["أجري 😂", "أطمن عليها وأسألها ❤️", "أنام 😴"],
     correct: 1,
-    joke: "الإجابة الصح: تسأل وتطمن عليها يا إبراهيم ❤️"
+    message: "بالظبط! الاهتمام الحلو بيفرق جدًا. 🥹"
   },
   {
-    q: "مين صاحب المفاجأة دي؟ 🎁",
-    a: [
-      "لولو طبعًا 💗",
-      "حد بيحب المقالب 😂",
-      "محقق المباحث الجنائية 👮"
-    ],
+    q: "إيه المطلوب منك في الاختبار ده؟ 🎁",
+    answers: ["أركز وأجاوب 😂", "أطلب مساعدة الجمهور", "أقفل الموقع 😭"],
     correct: 0,
-    joke: "أيوه يا سيدي، لولو بنفسها عملتلك المفاجأة 🥹"
+    message: "عاش يا إبراهيم! قربنا نوصل للمفاجأة. 💗"
   },
   {
-    q: "وصلنا للسؤال المهم! ❤️",
-    a: [
-      "أنا جاهز للمفاجأة 🎁",
-      "أنا بدأت أقلق 😂",
-      "هو الاختبار ده ملوش نهاية؟ 😭"
-    ],
+    q: "آخر سؤال: جاهز للمفاجأة؟ 🥹",
+    answers: ["جاهز جدًا ❤️", "قلبي مش مطاوعني 😂", "فين النتيجة؟"],
     correct: 0,
-    joke: "خلاص يا إبراهيم، استعد للمفاجأة! 🎀"
+    message: "خلاص، جه وقت المفاجأة الكبيرة! 🎀"
   }
 ];
 
-let current = 0;
+let index = 0;
 let score = 0;
 
-function startQuiz() {
-  current = 0;
+function showQuiz() {
+  index = 0;
   score = 0;
-  showQuestion();
+  renderQuestion();
 }
 
-function showQuestion() {
-  const item = questions[current];
-
+function renderQuestion() {
+  const q = questions[index];
   let html = `
-    <p id="progress">السؤال ${current + 1} من ${questions.length}</p>
-    <h2>${item.q}</h2>
+    <p style="color:#e45d9d">السؤال ${index + 1} من ${questions.length}</p>
+    <h2>${q.q}</h2>
   `;
 
-  item.a.forEach((answer, index) => {
-    html += `<button onclick="answerQuestion(${index})">${answer}</button>`;
+  q.answers.forEach((answer, i) => {
+    html += `<button onclick="answer(${i})">${answer}</button>`;
   });
 
-  document.getElementById("app").innerHTML = html;
+  app.innerHTML = html;
 }
 
-function answerQuestion(index) {
-  const item = questions[current];
-  if (index === item.correct) score++;
+function answer(i) {
+  const q = questions[index];
+  if (i === q.correct) score++;
 
-  document.getElementById("app").innerHTML = `
-    <div style="font-size:40px">😂💗</div>
-    <h2>إجابتك اتسجلت!</h2>
-    <p>${item.joke}</p>
+  app.innerHTML = `
+    <div style="font-size:42px">😂💗</div>
+    <h2>${q.message}</h2>
     <button onclick="nextQuestion()">نكمل؟ 👀</button>
   `;
 }
 
 function nextQuestion() {
-  current++;
-  if (current < questions.length) {
-    showQuestion();
-  } else {
-    showFinal();
-  }
+  index++;
+  if (index < questions.length) renderQuestion();
+  else showFinal();
 }
 
 function showFinal() {
-  document.getElementById("app").innerHTML = `
-    <div style="font-size:45px">💗🎁💗</div>
-    <h1>خلصت الاختبار يا إبراهيم!</h1>
+  app.innerHTML = `
+    <div style="font-size:55px">💗🎀💗</div>
+    <h1>وصلت للنهاية يا إبراهيم!</h1>
     <p>نتيجتك: ${score} من ${questions.length} 😂</p>
     <p>
-      بس بعيدًا عن الهزار، حبيت أعملك حاجة مختلفة
-      تضحكك وتفرحك، وتكون ذكرى حلوة بينا. ❤️
+      حبيت أعملك حاجة مختلفة تضحكك وتبسطك،
+      وتفضل ذكرى حلوة بينا. ❤️
     </p>
     <p>
-      وجودك في حياتي له مكانة خاصة عندي،
-      ويارب دايمًا أشوفك مبسوط وفرحان. 🥹💗
+      يوم 22/7/2026 هيكون دايمًا تاريخ مميز في حكايتنا،
+      ويارب نفضل نضيف لحكايتنا ذكريات أحلى وأحلى. 🥹💗
     </p>
-    <p>من لولو إلى إبراهيم، بكل الحب 🎀</p>
-    <button onclick="restart()">نعيد الاختبار؟ 😂</button>
+    <p style="font-size:21px;color:#e45d9d">
+      From Lolo to Ibrahim ❤️
+    </p>
+    <button onclick="showMusic()">عندي ليك أغنية 🎵</button>
   `;
 }
 
-function restart() {
-  current = 0;
-  score = 0;
-  showQuestion();
+function showMusic() {
+  app.innerHTML = `
+    <div style="font-size:50px">🎶💗</div>
+    <h1>كلمة لرامي صبري</h1>
+    <p>
+      الأغنية اللي اخترتيها يا لولو مستنياكي هنا ❤️
+    </p>
+    <p>اضغطي على الزر لفتح الأغنية والاستماع إليها.</p>
+    <button onclick="window.open(
+      'https://www.youtube.com/results?search_query=رامي+صبري+كلمة+الأغنية',
+      '_blank'
+    )">شغّل الأغنية 🎵</button>
+    <p class="small">من لولو لإبراهيم بكل الحب 🎀</p>
+  `;
 }
 </script>
 
