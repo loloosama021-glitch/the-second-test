@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الاختبار التاني 💗</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: linear-gradient(135deg, #fff7fb, #ffd9eb);
+  color: #63364e;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  width: 100%;
+  max-width: 430px;
+  padding: 28px 20px;
+  border-radius: 25px;
+  box-shadow: 0 8px 30px #e7a4c755;
+}
+
+h1 {
+  color: #e75b9b;
+}
+
+p {
+  line-height: 1.9;
+}
+
+button {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  padding: 14px;
+  margin-top: 12px;
+  background: #f5a5cc;
+  color: #51253e;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #f080b5;
+}
+
+.small {
+  font-size: 13px;
+  color: #a46d8a;
+}
+
+#progress {
+  color: #d85a98;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="app">
+  <div style="font-size:45px">🎀💗🎀</div>
+  <h1>الاختبار التاني</h1>
+
+  <p>
+    🚨 تنبيه مهم يا إبراهيم!<br>
+    تم اختيارك لدخول اختبار مصيري 😂
+  </p>
+
+  <p>
+    الاختبار ده معمول مخصوص ليك،
+    وممنوع الاستعانة بصديق أو طلب مساعدة لولو! 👀
+  </p>
+
+  <button onclick="startQuiz()">يلا نبدأ 😂</button>
+  <p class="small">نتمنى لك التوفيق يا أستاذ إبراهيم 💗</p>
+</div>
+
+<script>
+const questions = [
+  {
+    q: "أول سؤال يا إبراهيم 😂 إنت مين؟",
+    a: [
+      "أجمل واحد في الدنيا 😎",
+      "شخصية غامضة جدًا 👀",
+      "الضحية الرسمية للاختبار 😂"
+    ],
+    correct: 2,
+    joke: "الإجابة كلها صح، بس إنت الضحية النهارده 😂"
+  },
+  {
+    q: "لما لولو تقولك مفيش حاجة، تعمل إيه؟ 👀",
+    a: [
+      "أصدقها فورًا 😂",
+      "أسألها تاني وأطمن عليها ❤️",
+      "أهرب قبل المصيبة 😭"
+    ],
+    correct: 1,
+    joke: "الإجابة الصح: تسأل وتطمن عليها يا إبراهيم ❤️"
+  },
+  {
+    q: "مين صاحب المفاجأة دي؟ 🎁",
+    a: [
+      "لولو طبعًا 💗",
+      "حد بيحب المقالب 😂",
+      "محقق المباحث الجنائية 👮"
+    ],
+    correct: 0,
+    joke: "أيوه يا سيدي، لولو بنفسها عملتلك المفاجأة 🥹"
+  },
+  {
+    q: "وصلنا للسؤال المهم! ❤️",
+    a: [
+      "أنا جاهز للمفاجأة 🎁",
+      "أنا بدأت أقلق 😂",
+      "هو الاختبار ده ملوش نهاية؟ 😭"
+    ],
+    correct: 0,
+    joke: "خلاص يا إبراهيم، استعد للمفاجأة! 🎀"
+  }
+];
+
+let current = 0;
+let score = 0;
+
+function startQuiz() {
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+
+function showQuestion() {
+  const item = questions[current];
+
+  let html = `
+    <p id="progress">السؤال ${current + 1} من ${questions.length}</p>
+    <h2>${item.q}</h2>
+  `;
+
+  item.a.forEach((answer, index) => {
+    html += `<button onclick="answerQuestion(${index})">${answer}</button>`;
+  });
+
+  document.getElementById("app").innerHTML = html;
+}
+
+function answerQuestion(index) {
+  const item = questions[current];
+  if (index === item.correct) score++;
+
+  document.getElementById("app").innerHTML = `
+    <div style="font-size:40px">😂💗</div>
+    <h2>إجابتك اتسجلت!</h2>
+    <p>${item.joke}</p>
+    <button onclick="nextQuestion()">نكمل؟ 👀</button>
+  `;
+}
+
+function nextQuestion() {
+  current++;
+  if (current < questions.length) {
+    showQuestion();
+  } else {
+    showFinal();
+  }
+}
+
+function showFinal() {
+  document.getElementById("app").innerHTML = `
+    <div style="font-size:45px">💗🎁💗</div>
+    <h1>خلصت الاختبار يا إبراهيم!</h1>
+    <p>نتيجتك: ${score} من ${questions.length} 😂</p>
+    <p>
+      بس بعيدًا عن الهزار، حبيت أعملك حاجة مختلفة
+      تضحكك وتفرحك، وتكون ذكرى حلوة بينا. ❤️
+    </p>
+    <p>
+      وجودك في حياتي له مكانة خاصة عندي،
+      ويارب دايمًا أشوفك مبسوط وفرحان. 🥹💗
+    </p>
+    <p>من لولو إلى إبراهيم، بكل الحب 🎀</p>
+    <button onclick="restart()">نعيد الاختبار؟ 😂</button>
+  `;
+}
+
+function restart() {
+  current = 0;
+  score = 0;
+  showQuestion();
+}
+</script>
+
+</body>
+</html>
