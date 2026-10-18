@@ -2,33 +2,205 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>الاختبار التاني 💗</title>
 
 <style>
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --pink: #ff79b0;
+  --dark-pink: #e84f91;
+  --light-pink: #fff0f7;
+  --white: #ffffff;
+}
 
 body {
   margin: 0;
   min-height: 100vh;
-  display: flex;
+  font-family: Tahoma, Arial, sans-serif;
+  background: linear-gradient(145deg, #fffafd, #ffe5f1, #ffffff);
+  color: #71344f;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  min-height: 100vh;
+  padding: 25px 16px;
   align-items: center;
   justify-content: center;
-  padding: 18px;
-  font-family: Tahoma, Arial, sans-serif;
-  text-align: center;
-  color: #713c59;
-  background: linear-gradient(135deg, #fffaff, #ffd8e9);
+  flex-direction: column;
+}
+
+.screen.active {
+  display: flex;
 }
 
 .card {
   width: 100%;
-  max-width: 430px;
-  padding: 27px 20px;
+  max-width: 520px;
+  padding: 28px 20px;
+  background: rgba(255,255,255,.92);
+  border: 2px solid #ffd0e4;
   border-radius: 28px;
-  background: white;
-  box-shadow: 0 10px 35px #d981ae33;
-  animation: appear .5s ease;
+  box-shadow: 0 12px 35px rgba(224, 91, 151, .14);
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: var(--dark-pink);
+  font-size: clamp(25px, 6vw, 35px);
+  margin-top: 8px;
+}
+
+h2 {
+  font-size: 22px;
+  color: #d94c8c;
+}
+
+p {
+  line-height: 1.9;
+}
+
+.small {
+  font-size: 13px;
+  color: #a56a85;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  margin: 14px 0;
+  border: 2px solid #ffc1dc;
+  border-radius: 15px;
+  outline: none;
+  font-size: 17px;
+  text-align: center;
+  background: #fffafd;
+  color: #71344f;
+}
+
+input:focus {
+  border-color: var(--pink);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  padding: 13px 20px;
+  font-size: 16px;
+  transition: .2s;
+}
+
+button:active {
+  transform: scale(.97);
+}
+
+.main-btn {
+  color: white;
+  background: linear-gradient(120deg, #ff91bf, #e94c91);
+  box-shadow: 0 5px 15px #f4a5c8;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.main-btn:hover {
+  filter: brightness(1.04);
+}
+
+.option {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  background: #fff1f7;
+  color: #783c57;
+  border: 1.5px solid #ffd0e4;
+  text-align: right;
+  padding: 14px;
+}
+
+.option:hover {
+  background: #ffe0ee;
+  border-color: #ff8fbd;
+}
+
+.option:disabled {
+  cursor: default;
+  opacity: .8;
+}
+
+#progress {
+  width: 100%;
+  height: 10px;
+  background: #ffe4f0;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0 22px;
+}
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #ffb3d3, #e84f91);
+  transition: width .3s;
+}
+
+#feedback {
+  min-height: 35px;
+  color: #d94c8c;
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+.heart {
+  position: fixed;
+  bottom: -40px;
+  z-index: 1;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+  opacity: .7;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: .8;
+  }
+  to {
+    transform: translateY(-115vh) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+.envelope {
+  font-size: 90px;
+  animation: bounce 1.5s infinite ease-in-out;
+  margin: 10px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.letter {
+  background: #fff9fc;
+  border: 2px dashed #ff9ec7;
+  border-radius: 18px;
+  padding: 20px;
+  text-align: right;
+  line-height: 2.1;
+  white-space: pre-line;
+  margin-top: 20px;
+  animation: appear .7s ease;
 }
 
 @keyframes appear {
@@ -36,216 +208,612 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-h1 { color: #e45d9d; }
-p { line-height: 2; }
-
-input {
-  width: 100%;
-  padding: 14px;
-  border: 2px solid #f4b6d4;
-  border-radius: 14px;
-  text-align: center;
-  font-size: 18px;
-  margin: 12px 0;
+.badge {
+  display: inline-block;
+  padding: 7px 13px;
+  background: #fff0f7;
+  border-radius: 20px;
+  color: #d94c8c;
+  font-size: 13px;
 }
 
-button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border: none;
-  border-radius: 15px;
-  background: #f6acd0;
-  color: #65314d;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
+.secret {
+  border: 2px solid #ffadd0;
+  border-radius: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fff0f7, white);
+  margin-top: 18px;
+  animation: appear .7s ease;
 }
 
-button:hover { background: #f28cbd; }
-
-.heart {
-  position: fixed;
-  bottom: -30px;
-  pointer-events: none;
-  animation: float 5s linear forwards;
-  z-index: 5;
+footer {
+  margin-top: 18px;
+  font-size: 12px;
+  color: #bd8aa2;
 }
-
-@keyframes float {
-  to { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
-}
-
-.small { font-size: 12px; color: #b17c98; }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="app">
-  <div style="font-size:48px">🎀💗🎀</div>
-  <h1>A Surprise For Ibrahim</h1>
-  <p>
-    استنى يا إبراهيم! 👀❤️<br>
-    المفاجأة دي معمولة مخصوص ليك.<br>
-    بس الأول لازم تثبت إنك الشخص المقصود! 🔐
-  </p>
+<!-- شاشة الباسورد -->
+<section id="passwordScreen" class="screen active">
+  <div class="card">
+    <div style="font-size:65px">🎀🔐💗</div>
+    <span class="badge">ACCESS FOR IBRAHIM ONLY</span>
+    <h1>الاختبار التاني</h1>
+    <p>أهلًا يا إبراهيم 😂❤️</p>
+    <p>
+      قدامك اختبار مهم جدًا، وممنوع الاستعانة بصديق!
+      <br>
+      لو عايز تعرف المفاجأة، أثبت إنك الشخص المقصود 👀
+    </p>
 
-  <input id="password" type="password"
-         placeholder="اكتب التاريخ السري">
+    <input
+      id="passwordInput"
+      type="text"
+      placeholder="اكتب الباسورد هنا 🔑"
+      autocomplete="off"
+    >
 
-  <button onclick="checkPassword()">افتح مفاجأتك 💗</button>
-  <p id="error" style="color:#d94c86"></p>
-  <p class="small">A little surprise, made with love 🎁</p>
-</div>
+    <button class="main-btn" onclick="checkPassword()">
+      دخول الاختبار 💗
+    </button>
+
+    <p id="passwordMessage" class="small"></p>
+    <footer>Made with love by Lolo 🎀</footer>
+  </div>
+</section>
+
+<!-- مقدمة الاختبار -->
+<section id="introScreen" class="screen">
+  <div class="card">
+    <div style="font-size:65px">🕵️‍♂️💘</div>
+    <h1>مستعد يا إبراهيم؟</h1>
+    <p>
+      الاختبار مكوّن من 20 سؤالًا.
+      <br>
+      في أسئلة للضحك، وأسئلة عنكم، وفي الآخر...
+      <br>
+      مفاجأة مستنيّاك 👀💗
+    </p>
+    <p>ممنوع الغش يا أستاذ إبراهيم 😂</p>
+    <button class="main-btn" onclick="startQuiz()">ابدأ الاختبار 🚀</button>
+  </div>
+</section>
+
+<!-- شاشة الأسئلة -->
+<section id="quizScreen" class="screen">
+  <div class="card">
+    <span id="stageBadge" class="badge">المرحلة الأولى</span>
+    <h2 id="stageTitle">تحقيقات مهمة جدًا 😂</h2>
+
+    <div id="progress">
+      <div id="progressBar"></div>
+    </div>
+
+    <p id="questionNumber" class="small"></p>
+    <h2 id="questionText"></h2>
+
+    <div id="options"></div>
+    <p id="feedback"></p>
+
+    <button
+      id="nextButton"
+      class="main-btn"
+      style="display:none"
+      onclick="nextQuestion()"
+    >
+      السؤال اللي بعده ➜
+    </button>
+  </div>
+</section>
+
+<!-- شاشة النتيجة -->
+<section id="resultScreen" class="screen">
+  <div class="card">
+    <div style="font-size:70px">🏆💗</div>
+    <h1>خلصت الاختبار!</h1>
+    <p id="resultText"></p>
+    <p>
+      بس استنى... لسه فيه حاجة معمولة مخصوص ليك.
+      <br>
+      ركّز معايا في اللي جاي 🥹🎀
+    </p>
+    <button class="main-btn" onclick="showLetter()">افتح جوابك 💌</button>
+  </div>
+</section>
+
+<!-- شاشة الجواب -->
+<section id="letterScreen" class="screen">
+  <div class="card">
+    <span class="badge">A LITTLE LETTER FOR YOU</span>
+    <h1>جواب من لولو لإبراهيم 💌</h1>
+
+    <div id="envelopeArea">
+      <div class="envelope">💌</div>
+      <p>الجواب ده ليك إنت وبس ❤️</p>
+      <button class="main-btn" onclick="openLetter()">افتح الظرف 🥹</button>
+    </div>
+
+    <div id="letterText" class="letter" style="display:none"></div>
+
+    <div id="musicArea" style="display:none; margin-top:20px">
+      <p>وفيه أغنية فكرتني بيك 🎶❤️</p>
+      <button class="main-btn" onclick="openSong()">
+        شغّل أغنيتنا 🎵
+      </button>
+      <p class="small">هتتفتح الأغنية على يوتيوب.</p>
+      <button class="main-btn" onclick="showFinal()">
+        استنى... فيه حاجة كمان؟ 👀
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- النهاية السرية -->
+<section id="finalScreen" class="screen">
+  <div class="card">
+    <div style="font-size:75px">🔓💖🎉</div>
+    <span class="badge">SECRET LEVEL UNLOCKED</span>
+    <h1>وقعت في الفخ يا إبراهيم! 😂</h1>
+
+    <p>
+      كنت فاكر إن الاختبار هو المفاجأة كلها؟
+      <br>
+      لا يا حبيبي، لسه فيه آخر مرحلة! 👀
+    </p>
+
+    <button class="main-btn" onclick="revealSecret()">
+      اكشف آخر سر 🤫
+    </button>
+
+    <div id="secretMessage" class="secret" style="display:none">
+      <h2>مبروووك يا إبراهيم! 🏆💗</h2>
+      <p>
+        لقد نجحت في الاختبار التاني بنجاح رسمي وغير قابل للطعن 😂
+      </p>
+      <p>
+        جائزتك مش حاجة تتشترى...
+        جائزتك إن فيه حد قعد يفكر إزاي يفرّحك،
+        ويعملك حاجة مختلفة مخصوص عشان يشوفك مبسوط. 🎀
+      </p>
+      <p>
+        <strong>من لولو لإبراهيم ❤️</strong>
+        <br>
+        وكل سنة وإنت طيب يا صاحب المفاجأة!
+      </p>
+      <div style="font-size:35px">💗💗💗</div>
+      <button class="main-btn" onclick="celebrate()">اضغط هنا عشان الاحتفال 😂🎉</button>
+      <p id="celebrationText"></p>
+    </div>
+  </div>
+</section>
 
 <script>
-const app = document.getElementById("app");
-
-function hearts() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.textContent = ["💗","💕","💖","🤍","🎀"][
-    Math.floor(Math.random() * 5)
-  ];
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (18 + Math.random() * 20) + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 5000);
-}
-
-setInterval(hearts, 700);
-
-function checkPassword() {
-  const value = document.getElementById("password").value.trim()
-    .replaceAll("/", "")
-    .replaceAll("-", "")
-    .replaceAll(".", "")
-    .replaceAll(" ", "");
-
-  if (value === "2272026") {
-    showWelcome();
-  } else {
-    document.getElementById("error").textContent =
-      "لأ يا إبراهيم 😂 جرّب تاني، ركّز في التاريخ! 💗";
-  }
-}
-
-function showWelcome() {
-  app.innerHTML = `
-    <div style="font-size:50px">🥹💗🎁</div>
-    <h1>عرفتها يا إبراهيم!</h1>
-    <p>
-      التاريخ ده مش مجرد أرقام بالنسبة لي،
-      ده يوم بدأ فيه فصل جديد في حكايتنا. ❤️
-    </p>
-    <p>جاهز تدخل الاختبار التاني؟ 😂</p>
-    <button onclick="showQuiz()">ابدأ الاختبار 🎀</button>
-  `;
-}
-
 const questions = [
   {
-    q: "مين صاحب المفاجأة دي؟ 😂",
-    answers: ["لولو طبعًا 💗", "محقق المباحث 👮", "مش عارف 😭"],
-    correct: 0,
-    message: "أيوه يا سيدي، لولو بنفسها عملتلك المفاجأة! 😂❤️"
+    stage: 1,
+    title: "تحقيقات مهمة جدًا 😂",
+    q: "1. مين غالبًا بيصالح التاني الأول؟",
+    options: ["أنا طبعًا 😌", "إنت يا إبراهيم 😂", "بنتخانق مين يصالح مين 😭"],
+    feedback: [
+      "يا سلام على الثقة بالنفس 😂",
+      "هنسجل الاعتراف ده في المحضر 👀",
+      "أهم حاجة في الآخر ترجعوا تتكلموا 💗"
+    ]
   },
   {
-    q: "لما لولو تقولك مفيش حاجة، تعمل إيه؟ 👀",
-    answers: ["أجري 😂", "أطمن عليها وأسألها ❤️", "أنام 😴"],
-    correct: 1,
-    message: "بالظبط! الاهتمام الحلو بيفرق جدًا. 🥹"
+    stage: 1,
+    title: "تحقيقات مهمة جدًا 😂",
+    q: "2. مين فيكم أعند؟",
+    options: ["لولو وبجدارة 🏆", "إبراهيم طبعًا 😂", "الاتنين ومفيش أمل 😭"],
+    feedback: [
+      "تم تسجيل الإجابة ضدك يا لولو 😂",
+      "إبراهيم دخل المنافسة بقوة!",
+      "ربنا يقويكم على بعض 😂💗"
+    ]
   },
   {
-    q: "إيه المطلوب منك في الاختبار ده؟ 🎁",
-    answers: ["أركز وأجاوب 😂", "أطلب مساعدة الجمهور", "أقفل الموقع 😭"],
-    correct: 0,
-    message: "عاش يا إبراهيم! قربنا نوصل للمفاجأة. 💗"
+    stage: 1,
+    title: "تحقيقات مهمة جدًا 😂",
+    q: "3. لو لولو قالت: «أنا مش زعلانة»...",
+    options: ["أصدقها فورًا 😂", "أفهم إن فيه حاجة وأسألها", "أجيب شوكولاتة وأستعد للمحاكمة 🍫"],
+    feedback: [
+      "محتاج كورس في قراءة المواقف 😂",
+      "أهو ده الكلام الحلو 💗",
+      "الشوكولاتة حل دبلوماسي محترم 😂"
+    ]
   },
   {
-    q: "آخر سؤال: جاهز للمفاجأة؟ 🥹",
-    answers: ["جاهز جدًا ❤️", "قلبي مش مطاوعني 😂", "فين النتيجة؟"],
-    correct: 0,
-    message: "خلاص، جه وقت المفاجأة الكبيرة! 🎀"
+    stage: 1,
+    title: "تحقيقات مهمة جدًا 😂",
+    q: "4. مين ممكن يضحك وقت الخناقة؟",
+    options: ["لولو 😂", "إبراهيم 😂", "الاتنين وبعدين ننسى كنا بنتخانق ليه"],
+    feedback: [
+      "الضحكة ممكن تفك التوتر فعلًا 😂",
+      "تم رصد ابتسامة في مكان الجريمة 👀",
+      "والخناقة راحت فين؟ محدش يعرف 😂"
+    ]
+  },
+  {
+    stage: 1,
+    title: "تحقيقات مهمة جدًا 😂",
+    q: "5. لو حد قال لإبراهيم: عندي سؤال عن لولو...",
+    options: ["يسمع السؤال عادي 👀", "يقول اتفضل بس باحترام 😂", "يعمل نفسه مش سامع 😭"],
+    feedback: [
+      "إجابة دبلوماسية جدًا 😂",
+      "الأدب مطلوب يا جماعة 😌",
+      "الانسحاب التكتيكي وصل 😂"
+    ]
+  },
+
+  {
+    stage: 2,
+    title: "امتحان لولو الشخصي 💗",
+    q: "6. إيه أكتر حاجة ممكن تفرّح لولو؟",
+    options: ["اهتمام من القلب", "مفاجأة بسيطة", "وقت حلو وكلام صادق"],
+    feedback: [
+      "الاهتمام الصادق بيفرق فعلًا 💗",
+      "المفاجآت ليها سحرها 🎀",
+      "أوقات أبسط الحاجات بتبقى أغلى حاجة ❤️"
+    ]
+  },
+  {
+    stage: 2,
+    title: "امتحان لولو الشخصي 💗",
+    q: "7. لو لولو متضايقة، أحسن بداية إيه؟",
+    options: ["أسيبها ومتكلمش خالص", "أسألها بهدوء إيه مضايقها", "أقولها متكبريش الموضوع"],
+    feedback: [
+      "المساحة مهمة، بس متخليش السكوت يوجع 💗",
+      "السؤال بهدوء بداية حلوة جدًا ❤️",
+      "مشاعرها تستاهل تتسمع حتى لو مش فاهمها"
+    ]
+  },
+  {
+    stage: 2,
+    title: "امتحان لولو الشخصي 💗",
+    q: "8. إيه أحسن طريقة تطمّن لولو؟",
+    options: ["كلام حلو وبس", "أفعال تثبت الكلام", "كلام وأفعال مع بعض ❤️"],
+    feedback: [
+      "الكلام الحلو بيفرق فعلًا 🥹",
+      "الأفعال بتدي للكلام معنى 💗",
+      "الإجابة دي تستاهل نجمة ⭐"
+    ]
+  },
+  {
+    stage: 2,
+    title: "امتحان لولو الشخصي 💗",
+    q: "9. لو حصل اختلاف بينكم، تعملوا إيه؟",
+    options: ["كل واحد يعاند أكتر 😂", "نتكلم ونسمع بعض", "نستنى لحد ما المشكلة تكبر 😭"],
+    feedback: [
+      "هنحتاج حكم محايد هنا 😂",
+      "الاختلاف طبيعي، والمهم الاحترام والتفاهم ❤️",
+      "يا جماعة الحقوا المشكلة بدري 😂"
+    ]
+  },
+  {
+    stage: 2,
+    title: "امتحان لولو الشخصي 💗",
+    q: "10. إيه أحلى حاجة في العلاقة؟",
+    options: ["الضحك والهزار", "الأمان والثقة", "كل ده مع الاهتمام والاحترام"],
+    feedback: [
+      "الضحك بيخلّي الذكريات أحلى 😂",
+      "الأمان والثقة أساس مهم 💗",
+      "الإجابة دي خدت الدرجة الكاملة معنويًا 😂❤️"
+    ]
+  },
+
+  {
+    stage: 3,
+    title: "حكايتكم سوا 📖",
+    q: "11. إيه اللي بيخلّي تاريخ معين مميز؟",
+    options: ["إنه مجرد رقم", "إن وراه ذكرى حلوة", "إننا بنفتكره ونبتسم ❤️"],
+    feedback: [
+      "حتى الأرقام ليها مشاعر يا أستاذ 😂",
+      "الذكريات هي اللي بتدي للتاريخ معنى 💗",
+      "ودي أحلى طريقة نفتكر بيها يوم مميز 🥹"
+    ]
+  },
+  {
+    stage: 3,
+    title: "حكايتكم سوا 📖",
+    q: "12. لو عندكم يوم كامل تقضوه سوا، تختاروا إيه؟",
+    options: ["خروجة وضحك 😂", "قعدة هادية وكلام", "أي مكان المهم اليوم يبقى حلو"],
+    feedback: [
+      "ممنوع الضحك لحد ما نرجع 😂",
+      "القعدات الهادية ليها جوها 💗",
+      "المكان مش أهم من الوقت الحلو ❤️"
+    ]
+  },
+  {
+    stage: 3,
+    title: "حكايتكم سوا 📖",
+    q: "13. لو تقدروا تعيدوا ذكرى حلوة، تختاروا إيه؟",
+    options: ["أول مرة اتكلمنا فيها", "أحلى يوم ضحكنا فيه", "ذكرى لسه هنعملها قدام 💕"],
+    feedback: [
+      "البدايات ليها طعم مختلف 🥹",
+      "الضحك بيتحفظ في الذاكرة 😂",
+      "أحلى ذكريات لسه ممكن تكون جاية 💗"
+    ]
+  },
+  {
+    stage: 3,
+    title: "حكايتكم سوا 📖",
+    q: "14. لو قصتكم فيلم، هيكون اسمه إيه؟",
+    options: ["الاختبار التاني 😂", "إبراهيم ولولو في مهمة سرية 🕵️", "ضحك وحب ومفاجآت 💗"],
+    feedback: [
+      "العنوان الرسمي للمشروع 😂",
+      "محتاجين بوستر للفيلم ده!",
+      "اسم لطيف أهو 🥹❤️"
+    ]
+  },
+  {
+    stage: 3,
+    title: "حكايتكم سوا 📖",
+    q: "15. إيه اللي يخلي ذكرى صغيرة تفضل مميزة؟",
+    options: ["الصورة اللي اتصورت", "الكلام اللي اتقال", "الإحساس اللي فضل بعدها 💗"],
+    feedback: [
+      "الصور بتخلينا نفتكر 📸",
+      "الكلام الحلو بيتحفظ ❤️",
+      "الإحساس الجميل ساعات بيفضل أطول 🥹"
+    ]
+  },
+
+  {
+    stage: 4,
+    title: "آخر مرحلة... ركّز بقى 👀",
+    q: "16. لو لولو يومها مش أحسن حاجة، تعمل إيه؟",
+    options: ["أسمعها من غير ما أحكم عليها", "أحاول أضحكها لو ده مناسب", "أسألها محتاجة إيه مني"],
+    feedback: [
+      "إنك تسمعها من غير حكم حاجة مهمة ❤️",
+      "الضحك جميل لما تكون مستعدة له 😂",
+      "السؤال المباشر ساعات بيفرق جدًا 💗"
+    ]
+  },
+  {
+    stage: 4,
+    title: "آخر مرحلة... ركّز بقى 👀",
+    q: "17. إيه أهم حاجة وقت الزعل؟",
+    options: ["مين يكسب النقاش", "الاحترام حتى وإحنا مختلفين", "مين يسكت الأول 😂"],
+    feedback: [
+      "العلاقة مش مسابقة يا أستاذ 😂",
+      "الاحترام مهم حتى وقت الاختلاف ❤️",
+      "الصمت مش دايمًا بيحل المشكلة 😅"
+    ]
+  },
+  {
+    stage: 4,
+    title: "آخر مرحلة... ركّز بقى 👀",
+    q: "18. إيه أحلى مفاجأة؟",
+    options: ["حاجة غالية جدًا", "حاجة معمولة مخصوص ليا", "رسالة حلوة في وقت مش متوقع 💌"],
+    feedback: [
+      "السعر مش هو اللي بيحدد قيمة الهدية 🎁",
+      "الحاجات اللي فيها مجهود ليها معنى 💗",
+      "الرسائل المفاجئة ممكن تفرّح القلب 🥹"
+    ]
+  },
+  {
+    stage: 4,
+    title: "آخر مرحلة... ركّز بقى 👀",
+    q: "19. لو لولو قالت: «عندي مفاجأة ليك»...",
+    options: ["أقول فين المفاجأة؟ 😂", "أستنى وأحاول ما أستعجلش", "أبدأ أحقق معاها فورًا 🕵️"],
+    feedback: [
+      "الصبر يا إبراهيم 😂",
+      "أهو ده الهدوء المطلوب!",
+      "واضح إن عندك فضول مش طبيعي 😂"
+    ]
+  },
+  {
+    stage: 4,
+    title: "آخر مرحلة... ركّز بقى 👀",
+    q: "20. وصلت لآخر سؤال... مستعد للجائزة؟",
+    options: ["هاتوا الجائزة فورًا 😂", "أنا متحمس جدًا 💗", "حاسس إن لسه فيه مقلب 👀"],
+    feedback: [
+      "الطمع وصل قبل الجائزة 😂",
+      "خلاص قربنا من المفاجأة 🥹",
+      "شكّاك رسميًا، بس كمّل 😂❤️"
+    ]
   }
 ];
 
-let index = 0;
+let currentQuestion = 0;
 let score = 0;
+let answered = false;
 
-function showQuiz() {
-  index = 0;
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+  window.scrollTo({top: 0, behavior: "smooth"});
+}
+
+function normalizeDigits(value) {
+  const arabicDigits = "٠١٢٣٤٥٦٧٨٩";
+  return value
+    .replace(/[٠-٩]/g, d => arabicDigits.indexOf(d))
+    .replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+}
+
+function checkPassword() {
+  const input = normalizeDigits(
+    document.getElementById("passwordInput").value
+  ).replace(/[\s./\\-]/g, "");
+
+  const message = document.getElementById("passwordMessage");
+
+  if (input === "2272026") {
+    message.textContent = "الباسورد صح! جهّز نفسك 😂💗";
+    setTimeout(() => showScreen("introScreen"), 500);
+  } else {
+    message.textContent = "لأ يا إبراهيم 😂 جرّب تاني!";
+  }
+}
+
+document.getElementById("passwordInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") checkPassword();
+});
+
+function startQuiz() {
+  currentQuestion = 0;
   score = 0;
   renderQuestion();
+  showScreen("quizScreen");
 }
 
 function renderQuestion() {
-  const q = questions[index];
-  let html = `
-    <p style="color:#e45d9d">السؤال ${index + 1} من ${questions.length}</p>
-    <h2>${q.q}</h2>
-  `;
+  answered = false;
 
-  q.answers.forEach((answer, i) => {
-    html += `<button onclick="answer(${i})">${answer}</button>`;
+  const q = questions[currentQuestion];
+
+  document.getElementById("stageBadge").textContent =
+    "المرحلة " + q.stage + " من 4";
+
+  document.getElementById("stageTitle").textContent = q.title;
+  document.getElementById("questionNumber").textContent =
+    "السؤال " + (currentQuestion + 1) + " من " + questions.length;
+
+  document.getElementById("questionText").textContent = q.q;
+
+  document.getElementById("progressBar").style.width =
+    (currentQuestion / questions.length * 100) + "%";
+
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("nextButton").style.display = "none";
+
+  const optionsBox = document.getElementById("options");
+  optionsBox.innerHTML = "";
+
+  q.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.className = "option";
+    button.textContent = option;
+
+    button.onclick = () => chooseAnswer(index, button);
+    optionsBox.appendChild(button);
   });
-
-  app.innerHTML = html;
 }
 
-function answer(i) {
-  const q = questions[index];
-  if (i === q.correct) score++;
+function chooseAnswer(index, button) {
+  if (answered) return;
+  answered = true;
 
-  app.innerHTML = `
-    <div style="font-size:42px">😂💗</div>
-    <h2>${q.message}</h2>
-    <button onclick="nextQuestion()">نكمل؟ 👀</button>
-  `;
+  score++;
+
+  document.querySelectorAll("#options button").forEach(btn => {
+    btn.disabled = true;
+  });
+
+  button.style.background = "#ffe0ee";
+  button.style.borderColor = "#e84f91";
+
+  document.getElementById("feedback").textContent =
+    questions[currentQuestion].feedback[index];
+
+  const nextButton = document.getElementById("nextButton");
+  nextButton.style.display = "block";
+  nextButton.textContent =
+    currentQuestion === questions.length - 1
+      ? "شوف النتيجة والجائزة 🎁"
+      : "السؤال اللي بعده ➜";
 }
 
 function nextQuestion() {
-  index++;
-  if (index < questions.length) renderQuestion();
-  else showFinal();
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    renderQuestion();
+  } else {
+    document.getElementById("progressBar").style.width = "100%";
+    document.getElementById("resultText").textContent =
+      "جاوبت على الـ20 سؤال يا إبراهيم! 🎉 اعتبر نفسك نجحت في اختبار الفضول والمفاجآت بدرجة 100/100 😂💗";
+    showScreen("resultScreen");
+  }
+}
+
+function showLetter() {
+  showScreen("letterScreen");
+}
+
+function openLetter() {
+  document.getElementById("envelopeArea").style.display = "none";
+
+  const letter = document.getElementById("letterText");
+
+  letter.textContent =
+`يا إبراهيم، ❤️
+
+يمكن أنا مش بعرف أعبّرلك كل مرة عن كل اللي جوايا، بس حقيقي وجودك في حياتي بيفرق معايا، وبحب إن يبقى بينا ذكريات وتفاصيل صغيرة نفضل نفتكرها ونضحك عليها بعدين.
+
+أنا مش مستنية مننا إننا نكون مثاليين، ولا إننا نتفق في كل حاجة، أنا بس بتمنى نفضل فاهمين بعض، ونسمع بعض، ونعرف إن أي اختلاف مش معناه إننا بقينا بعيد عن بعض.
+
+يوم 22/7/2026 بالنسبالي تاريخ مميز، لأنه بداية حكاية أتمنى يكون فيها أيام حلوة كتير، وضحك أكتر، ومواقف نفضل نحكيها لبعض.
+
+عملتلك الموقع ده عشان أفرحك وأشوفك مبسوط، وعشان أقولك بطريقة مختلفة إنك شخص غالي عندي، وإن وجودك مش حاجة عادية بالنسبالي.
+
+أتمنى تفضل دايمًا بخير ومبسوط، وتحقق كل اللي نفسك فيه، وتفضل عندك أسباب كتير تخليك تبتسم. ❤️
+
+من لولو لإبراهيم،
+بكل الحب اللي معرفتش أحطه كله في كلام. 💗🎀`;
+
+  letter.style.display = "block";
+  document.getElementById("musicArea").style.display = "block";
+
+  burstHearts(18);
+}
+
+function openSong() {
+  const songURL =
+    "https://www.youtube.com/results?search_query=" +
+    encodeURIComponent("رامي صبري إحساسي معاك إني في جنة");
+
+  window.open(songURL, "_blank", "noopener,noreferrer");
 }
 
 function showFinal() {
-  app.innerHTML = `
-    <div style="font-size:55px">💗🎀💗</div>
-    <h1>وصلت للنهاية يا إبراهيم!</h1>
-    <p>نتيجتك: ${score} من ${questions.length} 😂</p>
-    <p>
-      حبيت أعملك حاجة مختلفة تضحكك وتبسطك،
-      وتفضل ذكرى حلوة بينا. ❤️
-    </p>
-    <p>
-      يوم 22/7/2026 هيكون دايمًا تاريخ مميز في حكايتنا،
-      ويارب نفضل نضيف لحكايتنا ذكريات أحلى وأحلى. 🥹💗
-    </p>
-    <p style="font-size:21px;color:#e45d9d">
-      From Lolo to Ibrahim ❤️
-    </p>
-    <button onclick="showMusic()">عندي ليك أغنية 🎵</button>
-  `;
+  showScreen("finalScreen");
+  burstHearts(20);
 }
 
-function showMusic() {
-  app.innerHTML = `
-    <div style="font-size:50px">🎶💗</div>
-    <h1>كلمة لرامي صبري</h1>
-    <p>
-      الأغنية اللي اخترتيها يا لولو مستنياكي هنا ❤️
-    </p>
-    <p>اضغطي على الزر لفتح الأغنية والاستماع إليها.</p>
-    <button onclick="window.open(
-      'https://www.youtube.com/results?search_query=رامي+صبري+كلمة+الأغنية',
-      '_blank'
-    )">شغّل الأغنية 🎵</button>
-    <p class="small">من لولو لإبراهيم بكل الحب 🎀</p>
-  `;
+function revealSecret() {
+  document.getElementById("secretMessage").style.display = "block";
+  burstHearts(30);
 }
+
+function celebrate() {
+  document.getElementById("celebrationText").textContent =
+    "كل سنة وإنت طيب يا إبراهيم! 🎉💗 تم تفعيل وضع الدلع والاحتفال بنجاح 😂🎀";
+  burstHearts(40);
+}
+
+function burstHearts(count) {
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = ["💗", "💕", "💖", "🎀", "❤️"][Math.floor(Math.random() * 5)];
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6500);
+    }, i * 80);
+  }
+}
+
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.textContent = ["💗", "💕", "♡"][Math.floor(Math.random() * 3)];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (14 + Math.random() * 15) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 4) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 9500);
+}, 1100);
 </script>
 
 </body>
