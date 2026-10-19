@@ -1,436 +1,476 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رحلة الرمز والسر 💖</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --pink-main: #ff85a2;
-            --pink-light: #fbb1bd;
-            --pink-soft: #ffe5ec;
-            --white: #ffffff;
-            --dark-pink: #9e2a2b;
-            --text-color: #4a4a4a;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الاختبار التاني ❤️</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            background: linear-gradient(135deg, var(--pink-soft) 0%, var(--white) 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            color: var(--text-color);
-        }
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, #fff8fb, #ffd6e8, #fff);
+    color: #78334f;
+    text-align: center;
+}
 
-        /* القلوب الخفيفة في الخلفية */
-        .bg-element {
-            position: fixed;
-            font-size: 20px;
-            color: var(--pink-light);
-            opacity: 0.3;
-            animation: float 6s infinite ease-in-out;
-            pointer-events: none;
-            z-index: 0;
-        }
+.card {
+    width: 92%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px 20px;
+    background: rgba(255,255,255,.94);
+    border: 1px solid #ffe0ed;
+    border-radius: 25px;
+    box-shadow: 0 10px 35px #c94f8220;
+}
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(15deg); }
-        }
+h1, h2 {
+    color: #d94f91;
+}
 
-        .container {
-            width: 90%;
-            max-width: 550px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(255, 133, 162, 0.2);
-            backdrop-filter: blur(8px);
-            border: 2px solid var(--pink-light);
-            text-align: center;
-            position: relative;
-            z-index: 10;
-            transition: all 0.5s ease;
-        }
+.heart {
+    font-size: 45px;
+    animation: heartbeat 1s infinite alternate;
+}
 
-        .hidden {
-            display: none !important;
-        }
+@keyframes heartbeat {
+    to { transform: scale(1.12); }
+}
 
-        h1, h2 {
-            color: var(--pink-main);
-            margin-bottom: 20px;
-        }
+input {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #f0a3c6;
+    border-radius: 12px;
+    font-size: 16px;
+    text-align: center;
+}
 
-        /* شاشة الباسورد */
-        .login-box input {
-            width: 80%;
-            padding: 12px 20px;
-            border: 2px solid var(--pink-light);
-            border-radius: 20px;
-            outline: none;
-            font-size: 16px;
-            text-align: center;
-            margin-bottom: 15px;
-            transition: 0.3s;
-        }
+button {
+    border: none;
+    border-radius: 13px;
+    padding: 13px 18px;
+    margin: 8px 3px;
+    background: #e75e9b;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        .login-box input:focus {
-            border-color: var(--pink-main);
-            box-shadow: 0 0 10px rgba(255, 133, 162, 0.4);
-        }
+button:hover {
+    background: #c93e7c;
+}
 
-        .btn {
-            background: linear-gradient(45deg, var(--pink-main), var(--pink-light));
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 133, 162, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+.hidden {
+    display: none !important;
+}
 
-        .btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 133, 162, 0.6);
-        }
+.question {
+    background: #fff1f7;
+    border-radius: 18px;
+    padding: 18px;
+    margin: 18px 0;
+    text-align: right;
+}
 
-        .error-msg {
-            color: #d90429;
-            font-size: 14px;
-            margin-top: 10px;
-            height: 20px;
-        }
+.option {
+    display: block;
+    background: white;
+    border: 1px solid #f3c0d7;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 12px;
+    cursor: pointer;
+}
 
-        /* الاختبار */
-        .quiz-header {
-            font-size: 14px;
-            color: var(--pink-main);
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+.option input {
+    width: auto;
+    margin-left: 8px;
+}
 
-        .question-text {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 25px;
-            color: #333;
-        }
+.option.correct {
+    background: #d9f8e5;
+    border-color: #2aab65;
+    color: #17683a;
+}
 
-        .options-grid {
-            display: grid;
-            gap: 12px;
-        }
+.option.wrong {
+    background: #ffe0e0;
+    border-color: #e34d4d;
+    color: #a51d1d;
+}
 
-        .option-btn {
-            background: var(--white);
-            border: 2px solid var(--pink-soft);
-            padding: 12px;
-            border-radius: 15px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: var(--text-color);
-        }
+.feedback {
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 12px;
+    font-weight: bold;
+}
 
-        .option-btn:hover {
-            background: var(--pink-soft);
-            border-color: var(--pink-light);
-        }
+.good {
+    background: #d9f8e5;
+    color: #17683a;
+}
 
-        .option-btn.correct {
-            background: #d4edda !important;
-            border-color: #c3e6cb !important;
-            color: #155724 !important;
-        }
+.bad {
+    background: #ffe0e0;
+    color: #a51d1d;
+}
 
-        .option-btn.wrong {
-            background: #f8d7da !important;
-            border-color: #f5c6cb !important;
-            color: #721c24 !important;
-            animation: shake 0.4s;
-        }
+.message {
+    text-align: right;
+    line-height: 2.1;
+    white-space: pre-line;
+}
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-8px); }
-            40%, 80% { transform: translateX(8px); }
-        }
-
-        .feedback {
-            margin-top: 15px;
-            font-weight: bold;
-            min-height: 25px;
-            font-size: 16px;
-        }
-
-        /* مشغل الموسيقى Floating */
-        .music-control {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: white;
-            border: 2px solid var(--pink-light);
-            border-radius: 50px;
-            padding: 8px 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            z-index: 100;
-        }
-
-        .music-btn {
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-        }
-
-        /* نهاية الفيلم */
-        .love-ending {
-            line-height: 1.8;
-            font-size: 18px;
-            animation: fadeIn 2s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10deg); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+.small {
+    color: #a56b85;
+    font-size: 13px;
+}
+</style>
 </head>
+
 <body>
 
-    <!-- عناصر زينة دائرية في الخلفية -->
-    <div class="bg-element" style="top: 10%; left: 15%;">💖</div>
-    <div class="bg-element" style="top: 70%; left: 80%;">✨</div>
-    <div class="bg-element" style="top: 40%; left: 85%;">🌸</div>
-    <div class="bg-element" style="top: 80%; left: 10%;">🔒</div>
+<!-- شاشة الدخول -->
+<section class="card" id="login">
+    <div class="heart">💗</div>
+    <h1>الاختبار التاني</h1>
+    <p>فيه حد مجهزلك مفاجأة يا إبراهيم... ❤️</p>
+    <p>بس لازم تثبت إنك الشخص المقصود! 😂</p>
 
-    <!-- مشغل الموسيقى -->
-    <div class="music-control">
-        <button class="music-btn" id="musicToggle">🎵</button>
-        <span style="font-size: 12px; color: var(--pink-main);">كلمة - رامي صبري</span>
-    </div>
+    <input id="username" placeholder="اسمك إيه؟">
+    <input id="password" type="password"
+           placeholder="الباسورد السري">
 
-    <!-- ملف الصوت -->
-    <audio id="bgMusic" loop>
+    <button onclick="login()">دخول ❤️</button>
+    <p id="loginFeedback"></p>
+</section>
+
+<!-- الترحيب -->
+<section class="card hidden" id="welcome">
+    <div class="heart">💖</div>
+    <h1>أهلًا يا إبراهيم!</h1>
+    <p>
+        مستعد تختبر ذاكرتك؟ 😂<br>
+        عندك ١٠ أسئلة، وكل إجابة هتعرف فورًا إذا كانت صح أو غلط!
+    </p>
+    <button onclick="startQuiz()">ابدأ الاختبار 🎀</button>
+</section>
+
+<!-- الأسئلة -->
+<section class="card hidden" id="quiz">
+    <h2>اختبار إبراهيم ❤️</h2>
+    <p id="progress"></p>
+    <div id="questionArea"></div>
+    <button id="checkButton" onclick="checkAnswer()">تأكيد الإجابة</button>
+    <button id="nextButton" class="hidden"
+            onclick="nextQuestion()">السؤال التالي ➜</button>
+    <p id="feedback" class="feedback hidden"></p>
+</section>
+
+<!-- النتيجة -->
+<section class="card hidden" id="result">
+    <div class="heart">💗</div>
+    <h1>خلصت الاختبار!</h1>
+    <h2 id="score"></h2>
+    <p id="resultText"></p>
+    <button onclick="openLetter()">فيه رسالة مستنياك 💌</button>
+</section>
+
+<!-- الرسالة -->
+<section class="card hidden" id="letter">
+    <div class="heart">💖</div>
+    <h1>من لولو لإبراهيم</h1>
+
+    <p>
+        فيه أغنية عايزاك تسمعها وإنت بتقرأ الرسالة. ❤️
+    </p>
+
+    <audio id="music" controls loop preload="none">
         <source src="song.mp3" type="audio/mpeg">
+        متصفحك لا يدعم تشغيل الصوت.
     </audio>
 
-    <div class="container">
-        
-        <!-- 1. شاشة الدخول والباسورد -->
-        <div id="loginScreen" class="login-box">
-            <h1>أهلاً بك في عالم السر ✨</h1>
-            <p style="margin-bottom: 20px; color: #666;">علشان تقدر تدخل.. اكتب السر اللي بيننا 🔒</p>
-            <input type="password" id="passwordInput" placeholder="أدخل الباسورد...">
-            <br>
-            <button class="btn" onclick="checkPassword()">دخول 🔑</button>
-            <div id="loginError" class="error-msg"></div>
-        </div>
+    <p class="small">
+        لتشغيل الأغنية، أضيفي ملف الصوت المسموح باستخدامه باسم
+        song.mp3 إلى مجلد الموقع.
+    </p>
 
-        <!-- 2. شاشة الاختبار/اللعبة -->
-        <div id="quizScreen" class="hidden">
-            <div class="quiz-header" id="quizProgress">السؤال 1 من 10</div>
-            <div class="question-text" id="questionText">نص السؤال هيظهر هنا...</div>
-            <div class="options-grid" id="optionsContainer"></div>
-            <div class="feedback" id="feedbackText"></div>
-            <button id="nextBtn" class="btn hidden" style="margin-top: 20px;" onclick="nextQuestion()">السؤال التالي ➔</button>
-        </div>
+    <div class="message">
+إبراهيم ❤️
 
-        <!-- 3. شاشة النهاية (فيلم الحب) -->
-        <div id="endingScreen" class="hidden love-ending">
-            <h1>مبروك.. كشفت كل الأسرار! 🎬💖</h1>
-            <p>وصلت للنهاية وقدرت تعدي كل الألغاز والغوامض..</p>
-            <p style="margin-top: 15px; color: var(--pink-main); font-weight: bold;">
-                "كل كلمة.. وكل خطوة كانت علشان تقولك قد إيه أنت مميز بجد."
-            </p>
-            <div style="font-size: 40px; margin-top: 20px;">🌹✨</div>
-        </div>
+عارف إن المفاجأة دي يمكن تكون بسيطة، بس أنا حبيت أعملك حاجة مختلفة، حاجة تكون بتاعتنا إحنا، وتخليك تبتسم وإنت بتفتح كل جزء فيها.
 
+أنا مبسوطة إنك بقيت جزء من أيامي، وإن عندنا ذكريات ومواقف تخصنا إحنا لوحدنا. يمكن مش كل يوم بيكون مثالي، ويمكن ساعات بنختلف أو نفهم بعض غلط، بس ده مش معناه إن اللحظات الحلوة ملهاش قيمة.
+
+أنا مش مستنية منك الكمال، ولا عايزة علاقتنا تكون مجرد كلام حلو. أنا نفسي يكون بينا صدق واهتمام واحترام، وإننا نعرف نتكلم مع بعض حتى لما الأمور تكون صعبة.
+
+نفسي أكون شخص تقدر تحكيله عن يومك، وتشاركه فرحتك وتعبك، وتلاقي عنده حد يسمعك بجد. ونفسي أنا كمان ألاقي معاك نفس الاهتمام والأمان.
+
+بحب تفاصيل كتير في حكايتنا، وبحب إن لسه قدامنا ذكريات جديدة نعملها، وضحك ومواقف نفتكرها بعدين ونبتسم.
+
+وأهم حاجة عايزة أقولها لك: إنت غالي عندي يا إبراهيم، وأنا بتمنى لك كل خير، وبتمنى إننا نفضل دايمًا صريحين مع بعض، ونحافظ على الحاجات الحلوة اللي بينا.
+
+عملتلك الاختبار ده عشان أفرحك، مش عشان الدرجة 😂❤️
+
+بحبك يا إبراهيم.
+
+من لولو 💗
     </div>
 
-    <script>
-        // --- 1. إعدادات الباسورد والأغنية ---
-        // تم تغيير الباسورد هنا إلى الرقم المطلوب
-        const CORRECT_PASSWORD = "2272026"; 
+    <button onclick="openFinal()">افتح المفاجأة الأخيرة 🎁</button>
+</section>
 
-        const bgMusic = document.getElementById('bgMusic');
-        const musicToggle = document.getElementById('musicToggle');
-        let isPlaying = false;
+<!-- النهاية -->
+<section class="card hidden" id="final">
+    <div class="heart">🎁</div>
+    <h1>مبروك يا إبراهيم!</h1>
 
-        function toggleMusic() {
-            if (isPlaying) {
-                bgMusic.pause();
-                musicToggle.innerText = '🔇';
-            } else {
-                bgMusic.play();
-                musicToggle.innerText = '🎵';
-            }
-            isPlaying = !isPlaying;
-        }
-        musicToggle.addEventListener('click', toggleMusic);
+    <p>
+        نجحت في الاختبار التاني 😂❤️
+    </p>
 
-        // --- 2. التحقق من الباسورد ---
-        function checkPassword() {
-            const input = document.getElementById('passwordInput').value.trim();
-            const errorMsg = document.getElementById('loginError');
+    <h2>22 / 7 / 2026</h2>
 
-            if (input === CORRECT_PASSWORD) {
-                // تشغيل الأغنية فور الدخول الناجح
-                bgMusic.play().then(() => { isPlaying = true; }).catch(() => {});
-                
-                document.getElementById('loginScreen').classList.add('hidden');
-                document.getElementById('quizScreen').classList.remove('hidden');
-                loadQuestion();
-            } else {
-                errorMsg.innerText = "الباسورد غلط.. ركز في السر! ❌";
-            }
-        }
+    <p>
+        تاريخ بداية حكايتنا 💗
+    </p>
 
-        // --- 3. الأسئلة والتفاعل ---
-        const questions = [
-            {
-                q: "السؤال الأول: إيه أول حاجة خطفت عينك هنا؟",
-                options: ["الغموض اللي في الجو", "التصميم الوردي", "الأغنية", "صاحب الموقع 😉"],
-                correct: 3,
-                wrongMsg: "غلط! حاول تركز في التفاصيل أكتر 😜",
-                correctMsg: "إجابة صح ومضبوطة جداً! ❤️"
-            },
-            {
-                q: "السؤال الثاني: السر الحقيقي ورا اللعبة دي إيه؟",
-                options: ["مجرد اختبار عادي", "تحدي صعب", "رسالة حب مخفية 💌", "ضيع وقت"],
-                correct: 2,
-                wrongMsg: "لأ مش ده السر، فكر تاني!",
-                correctMsg: "صح! الإحساس هو الأساس ✨"
-            },
-            {
-                q: "السؤال الثالث: لو الدنيا هديت وفضلنا ساكتين.. إيه يتقال؟",
-                options: ["ولا كلمة", "كلمة واحدة بتغير كل حاجة", "سكوت تام", "نسمع الأغنية"],
-                correct: 1,
-                wrongMsg: "إجابة خاطئة.. حاول مرة تانية!",
-                correctMsg: "بالظبط! كلمة واحدة كفاية 🎶"
-            },
-            {
-                q: "السؤال الرابع: درجة صعوبة الغموض هنا كام؟",
-                options: ["سهل جداً", "متوسط", "صعب ومحتاج تركيز 🧠", "مستحيل"],
-                correct: 2,
-                wrongMsg: "مش بالبساطة دي.. جرب خيار تاني!",
-                correctMsg: "فعلاً التحدي محتاج ذكاء 💡"
-            },
-            {
-                q: "السؤال الخامس: اللون البينك بيعبر عن إيه في اللعبة دي؟",
-                options: ["الهدوء", "الرومانسية والرقة", "الخوف", "العصبية"],
-                correct: 1,
-                wrongMsg: "ركز في إحساس الألوان! 🌸",
-                correctMsg: "صح جداً.. لمسة حب ناعمة ✨"
-            },
-            {
-                q: "السؤال السادس: من أصل 10 أسرار.. أنت متوقع توصل للنهاية؟",
-                options: ["أكيد طبعاً 😎", "ممكن أستسلم", "مش عارف", "الغموض كسبني"],
-                correct: 0,
-                wrongMsg: "خلي عندك ثقة أكتر! حاول تاني ❌",
-                correctMsg: "عاش! الثقة دي هي المطلوب 🔥"
-            },
-            {
-                q: "السؤال السابع: الفيلم الحقيقي بيظبط لما يكون فيه إيه؟",
-                options: ["دراما بس", "أكشن بس", "خليط من الحب والغموض 🎬", "نهاية حزينة"],
-                correct: 2,
-                wrongMsg: "لأ، الفيلم الحلو محتاج المكس ده!",
-                correctMsg: "عبقري! وهو ده اللي بنعمله هنا ❤️"
-            },
-            {
-                q: "السؤال الثامن: أسرع طريق لقلب الغموض هو؟",
-                options: ["التسرع", "الصبر والتفكير", "الهروب", "الاستسلام"],
-                correct: 1,
-                wrongMsg: "التسرع بيخسرك! فكر تاني 🤔",
-                correctMsg: "صح! بالصبر نوصل للسر 🗝️"
-            },
-            {
-                q: "السؤال التاسع: الأغنية شغالة مع أحداث اللعبة علشان تدي إيه؟",
-                options: ["إزعاج", "جو سينمائي تحفة 🎧", "ملل", "ولا حاجة"],
-                correct: 1,
-                wrongMsg: "غلط.. اسمع الصوت كويس! 🎶",
-                correctMsg: "بالظبط.. كأنك في مشهد من فيلم!"
-            },
-            {
-                q: "السؤال العاشر والأخير: هل جاهز تشوف المفاجأة الأخيرة؟",
-                options: ["جاهز جداً! 💖", "خايف", "مش متأكد", "عايز أعيد اللعبة"],
-                correct: 0,
-                wrongMsg: "لازم تكون جاهز.. يلا جرب تاني!",
-                correctMsg: "أهلاً بك في المشهد الأخير! 🎬"
-            }
-        ];
+    <p>
+        وأحلى حاجة في المفاجأة دي إني عملتها مخصوص عشانك.
+    </p>
 
-        let currentQ = 0;
+    <h2>بحبك ❤️</h2>
+    <p>توقيع: لولو 🎀</p>
+</section>
 
-        function loadQuestion() {
-            const qData = questions[currentQ];
-            document.getElementById('quizProgress').innerText = `السؤال ${currentQ + 1} من ${questions.length}`;
-            document.getElementById('questionText').innerText = qData.q;
-            document.getElementById('feedbackText').innerText = '';
-            document.getElementById('nextBtn').classList.add('hidden');
+<script>
+const PASSWORD = "22/7/2026";
 
-            const container = document.getElementById('optionsContainer');
-            container.innerHTML = '';
+const questions = [
+    {
+        q: "إحنا ارتبطنا يوم إيه؟",
+        options: ["22/7/2026", "22/8/2026", "21/7/2026"],
+        answer: 0
+    },
+    {
+        q: "إيه أكتر حاجة بتساعد علاقتنا تكمل؟",
+        options: ["العند", "الصدق والاهتمام", "التجاهل"],
+        answer: 1
+    },
+    {
+        q: "لو حصل سوء تفاهم بينا، نعمل إيه؟",
+        options: ["نتكلم ونفهم بعض", "نختفي", "نكابر"],
+        answer: 0
+    },
+    {
+        q: "إيه أهم حاجة وقت الزعل؟",
+        options: ["مين يكسب الخناقة", "نفهم إحساس بعض", "نسكت للأبد"],
+        answer: 1
+    },
+    {
+        q: "الهدية بتكون قيمتها الحقيقية في إيه؟",
+        options: ["سعرها بس", "معناها والاهتمام", "حجمها"],
+        answer: 1
+    },
+    {
+        q: "لو لولو بتحكيلك عن حاجة مضايقاها، الأفضل إيه؟",
+        options: ["أسمعها وأفهمها", "أتجاهلها", "أغير الموضوع فورًا"],
+        answer: 0
+    },
+    {
+        q: "إيه اللي يقوي الثقة بين اتنين؟",
+        options: ["الكلام من غير أفعال", "الصدق والوضوح", "إخفاء كل حاجة"],
+        answer: 1
+    },
+    {
+        q: "لو اختلفنا في الرأي، المفروض إيه؟",
+        options: ["نحترم اختلافنا", "نجرح بعض", "كل واحد يعاند"],
+        answer: 0
+    },
+    {
+        q: "إيه الأحلى في الذكريات؟",
+        options: ["إنها تجمعنا وتفرحنا", "إننا نتجاهلها", "إننا نندم عليها"],
+        answer: 0
+    },
+    {
+        q: "مين اللي عامل المفاجأة دي؟ 😂",
+        options: ["لولو ❤️", "إبراهيم", "المدرس بتاع الرياضة"],
+        answer: 0
+    }
+];
 
-            qData.options.forEach((opt, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerText = opt;
-                btn.onclick = () => selectOption(btn, idx);
-                container.appendChild(btn);
-            });
-        }
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
 
-        function selectOption(selectedBtn, idx) {
-            const qData = questions[currentQ];
-            const allBtns = document.querySelectorAll('.option-btn');
-            
-            allBtns.forEach(btn => btn.style.pointerEvents = 'none');
+function showOnly(id) {
+    document.querySelectorAll(".card").forEach(card => {
+        card.classList.add("hidden");
+    });
+    document.getElementById(id).classList.remove("hidden");
+}
 
-            if (idx === qData.correct) {
-                selectedBtn.classList.add('correct');
-                document.getElementById('feedbackText').style.color = '#155724';
-                document.getElementById('feedbackText').innerText = qData.correctMsg;
-                document.getElementById('nextBtn').classList.remove('hidden');
-            } else {
-                selectedBtn.classList.add('wrong');
-                document.getElementById('feedbackText').style.color = '#721c24';
-                document.getElementById('feedbackText').innerText = qData.wrongMsg;
-                
-                setTimeout(() => {
-                    selectedBtn.classList.remove('wrong');
-                    allBtns.forEach(btn => btn.style.pointerEvents = 'auto');
-                }, 1000);
-            }
-        }
+function login() {
+    const name = document.getElementById("username")
+        .value.trim().replace(/\s/g, "");
 
-        function nextQuestion() {
-            currentQ++;
-            if (currentQ < questions.length) {
-                loadQuestion();
-            } else {
-                document.getElementById('quizScreen').classList.add('hidden');
-                document.getElementById('endingScreen').classList.remove('hidden');
-            }
-        }
-    </script>
+    const password = document.getElementById("password")
+        .value.trim();
+
+    const validNames = ["ابراهيم", "إبراهيم", "ibrahim", "ebrahim"];
+
+    if (validNames.includes(name.toLowerCase()) &&
+        password === PASSWORD) {
+        showOnly("welcome");
+    } else {
+        document.getElementById("loginFeedback").textContent =
+            "الاسم أو الباسورد مش صح، جرّب تاني 😂❤️";
+    }
+}
+
+function startQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    showOnly("quiz");
+    renderQuestion();
+}
+
+function renderQuestion() {
+    answered = false;
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("progress").textContent =
+        `السؤال ${currentQuestion + 1} من ${questions.length}`;
+
+    let html = `<div class="question"><h3>${q.q}</h3>`;
+
+    q.options.forEach((option, index) => {
+        html += `
+            <label class="option" id="option${index}">
+                <input type="radio" name="answer" value="${index}">
+                ${option}
+            </label>
+        `;
+    });
+
+    html += "</div>";
+
+    document.getElementById("questionArea").innerHTML = html;
+
+    document.getElementById("feedback").className =
+        "feedback hidden";
+
+    document.getElementById("checkButton").classList.remove("hidden");
+    document.getElementById("nextButton").classList.add("hidden");
+}
+
+function checkAnswer() {
+    if (answered) return;
+
+    const selected = document.querySelector(
+        'input[name="answer"]:checked'
+    );
+
+    if (!selected) {
+        const feedback = document.getElementById("feedback");
+        feedback.className = "feedback bad";
+        feedback.textContent = "اختار إجابة الأول يا إبراهيم 😂";
+        return;
+    }
+
+    answered = true;
+
+    const q = questions[currentQuestion];
+    const chosen = Number(selected.value);
+    const feedback = document.getElementById("feedback");
+
+    document.querySelectorAll(".option input").forEach(input => {
+        input.disabled = true;
+    });
+
+    if (chosen === q.answer) {
+        score++;
+
+        document.getElementById("option" + chosen)
+            .classList.add("correct");
+
+        feedback.className = "feedback good";
+        feedback.textContent = "✅ إجابة صح! عاش يا إبراهيم ❤️";
+    } else {
+        document.getElementById("option" + chosen)
+            .classList.add("wrong");
+
+        document.getElementById("option" + q.answer)
+            .classList.add("correct");
+
+        feedback.className = "feedback bad";
+        feedback.textContent =
+            "❌ إجابة غلط! الإجابة الصحيحة هي: " +
+            q.options[q.answer];
+    }
+
+    document.getElementById("checkButton").classList.add("hidden");
+
+    const nextButton = document.getElementById("nextButton");
+    nextButton.classList.remove("hidden");
+
+    nextButton.textContent =
+        currentQuestion === questions.length - 1
+        ? "شوف نتيجتك ❤️"
+        : "السؤال التالي ➜";
+}
+
+function nextQuestion() {
+    if (!answered) return;
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+        renderQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    showOnly("result");
+
+    document.getElementById("score").textContent =
+        `${score} / ${questions.length}`;
+
+    let message;
+
+    if (score === 10) {
+        message = "فل مارك! إنت مركز أهو يا إبراهيم 😂💗";
+    } else if (score >= 7) {
+        message = "برافو عليك! نتيجة حلوة جدًا ❤️";
+    } else if (score >= 4) {
+        message = "مش بطال، بس محتاج تركز مع لولو أكتر 😂";
+    } else {
+        message = "واضح إنك محتاج تراجع الحكاية من أولها 😂💗";
+    }
+
+    document.getElementById("resultText").textContent = message;
+}
+
+function openLetter() {
+    showOnly("letter");
+}
+
+function openFinal() {
+    showOnly("final");
+}
+</script>
+
 </body>
-</html>
-
+    </html>
