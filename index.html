@@ -3,474 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>الاختبار التاني ❤️</title>
+<title>The Second Test ❤️</title>
 
 <style>
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Tahoma, Arial, sans-serif;
-    background: linear-gradient(135deg, #fff8fb, #ffd6e8, #fff);
-    color: #78334f;
-    text-align: center;
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #fff7fb, #f8d8e8);
+  color: #743b58;
+  text-align: center;
 }
 
 .card {
-    width: 92%;
-    max-width: 500px;
-    margin: 30px auto;
-    padding: 25px 20px;
-    background: rgba(255,255,255,.94);
-    border: 1px solid #ffe0ed;
-    border-radius: 25px;
-    box-shadow: 0 10px 35px #c94f8220;
+  width: 100%;
+  max-width: 460px;
+  background: white;
+  padding: 28px 22px;
+  border-radius: 25px;
+  box-shadow: 0 8px 30px #d99bb655;
 }
 
-h1, h2 {
-    color: #d94f91;
+h1 {
+  color: #d65d96;
 }
 
-.heart {
-    font-size: 45px;
-    animation: heartbeat 1s infinite alternate;
+p {
+  line-height: 1.9;
 }
 
-@keyframes heartbeat {
-    to { transform: scale(1.12); }
+input, textarea, button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 12px;
+  font-size: 16px;
 }
 
-input {
-    width: 100%;
-    padding: 13px;
-    margin: 8px 0;
-    border: 1px solid #f0a3c6;
-    border-radius: 12px;
-    font-size: 16px;
-    text-align: center;
+input, textarea {
+  border: 1px solid #edb5d0;
+}
+
+textarea {
+  min-height: 150px;
+  resize: vertical;
 }
 
 button {
-    border: none;
-    border-radius: 13px;
-    padding: 13px 18px;
-    margin: 8px 3px;
-    background: #e75e9b;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #c93e7c;
+  background: #e77eae;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .hidden {
-    display: none !important;
+  display: none;
 }
 
-.question {
-    background: #fff1f7;
-    border-radius: 18px;
-    padding: 18px;
-    margin: 18px 0;
-    text-align: right;
+#message {
+  color: #d65d96;
+  min-height: 24px;
 }
 
-.option {
-    display: block;
-    background: white;
-    border: 1px solid #f3c0d7;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 12px;
-    cursor: pointer;
+.progress {
+  background: #f7e4ed;
+  height: 7px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.option input {
-    width: auto;
-    margin-left: 8px;
-}
-
-.option.correct {
-    background: #d9f8e5;
-    border-color: #2aab65;
-    color: #17683a;
-}
-
-.option.wrong {
-    background: #ffe0e0;
-    border-color: #e34d4d;
-    color: #a51d1d;
-}
-
-.feedback {
-    padding: 12px;
-    margin-top: 12px;
-    border-radius: 12px;
-    font-weight: bold;
-}
-
-.good {
-    background: #d9f8e5;
-    color: #17683a;
-}
-
-.bad {
-    background: #ffe0e0;
-    color: #a51d1d;
-}
-
-.message {
-    text-align: right;
-    line-height: 2.1;
-    white-space: pre-line;
-}
-
-.small {
-    color: #a56b85;
-    font-size: 13px;
+#bar {
+  background: #e77eae;
+  height: 100%;
+  width: 10%;
 }
 </style>
 </head>
 
 <body>
 
-<!-- شاشة الدخول -->
-<section class="card" id="login">
-    <div class="heart">💗</div>
-    <h1>الاختبار التاني</h1>
-    <p>فيه حد مجهزلك مفاجأة يا إبراهيم... ❤️</p>
-    <p>بس لازم تثبت إنك الشخص المقصود! 😂</p>
+<main class="card">
 
-    <input id="username" placeholder="اسمك إيه؟">
-    <input id="password" type="password"
-           placeholder="الباسورد السري">
+<section id="login">
+  <h1>🎁 A Little Surprise 🎁</h1>
 
-    <button onclick="login()">دخول ❤️</button>
-    <p id="loginFeedback"></p>
+  <p>في مفاجأة صغيرة مستنياك يا Abrahem ❤️</p>
+
+  <p>قبل ما تدخل، افتحها بتاريخ ميلادك 🎂</p>
+
+  <input
+    id="password"
+    type="password"
+    placeholder="اكتب الباسورد"
+  >
+
+  <button onclick="login()">
+    افتح المفاجأة ❤️
+  </button>
+
+  <p id="loginMessage"></p>
 </section>
 
-<!-- الترحيب -->
-<section class="card hidden" id="welcome">
-    <div class="heart">💖</div>
-    <h1>أهلًا يا إبراهيم!</h1>
-    <p>
-        مستعد تختبر ذاكرتك؟ 😂<br>
-        عندك ١٠ أسئلة، وكل إجابة هتعرف فورًا إذا كانت صح أو غلط!
-    </p>
-    <button onclick="startQuiz()">ابدأ الاختبار 🎀</button>
+<section id="quiz" class="hidden">
+
+  <h1>THE SECOND TEST 💌</h1>
+
+  <p>جاوب من قلبك، مفيش إجابة نموذجية هنا ❤️</p>
+
+  <div class="progress">
+    <div id="bar"></div>
+  </div>
+
+  <p id="count"></p>
+
+  <h3 id="question"></h3>
+
+  <textarea
+    id="answer"
+    placeholder="اكتب إجابتك بنفسك هنا ❤️"
+  ></textarea>
+
+  <button onclick="nextQuestion()">
+    السؤال اللي بعده 💗
+  </button>
+
+  <p id="message"></p>
+
 </section>
 
-<!-- الأسئلة -->
-<section class="card hidden" id="quiz">
-    <h2>اختبار إبراهيم ❤️</h2>
-    <p id="progress"></p>
-    <div id="questionArea"></div>
-    <button id="checkButton" onclick="checkAnswer()">تأكيد الإجابة</button>
-    <button id="nextButton" class="hidden"
-            onclick="nextQuestion()">السؤال التالي ➜</button>
-    <p id="feedback" class="feedback hidden"></p>
+<section id="letter" class="hidden">
+
+  <h1>Happy Birthday, Abrahem! 🎂❤️</h1>
+
+  <p>
+    كل سنة وإنت طيب يا إبراهيم، وكل سنة وإنت
+    شخص غالي على قلبي. ❤️
+  </p>
+
+  <p>
+    وجودك في حياتي من الحاجات اللي بتخليني أبتسم،
+    وبتمنى سنتك الجديدة تكون مليانة فرحة ونجاح
+    وراحة بال، وتحقق فيها كل اللي نفسك فيه.
+  </p>
+
+  <p>
+    بحب الذكريات اللي بنعملها سوا، وبتمنى نفضل
+    نسمع بعض ونفهم بعض ونكون سند لبعض،
+    في الأيام الحلوة والصعبة.
+  </p>
+
+  <p>
+    أتمنى تفضل دايمًا عارف إن ليك مكانة خاصة عندي،
+    وإن فرحتك بتفرق معايا.
+  </p>
+
+  <h2>You're Special to Me ❤️</h2>
+
+  <p>
+    Happy Birthday, My Abrahem! 💗🎂
+  </p>
+
 </section>
 
-<!-- النتيجة -->
-<section class="card hidden" id="result">
-    <div class="heart">💗</div>
-    <h1>خلصت الاختبار!</h1>
-    <h2 id="score"></h2>
-    <p id="resultText"></p>
-    <button onclick="openLetter()">فيه رسالة مستنياك 💌</button>
-</section>
-
-<!-- الرسالة -->
-<section class="card hidden" id="letter">
-    <div class="heart">💖</div>
-    <h1>من لولو لإبراهيم</h1>
-
-    <p>
-        فيه أغنية عايزاك تسمعها وإنت بتقرأ الرسالة. ❤️
-    </p>
-
-    <audio id="music" controls loop preload="none">
-        <source src="song.mp3" type="audio/mpeg">
-        متصفحك لا يدعم تشغيل الصوت.
-    </audio>
-
-    <p class="small">
-        لتشغيل الأغنية، أضيفي ملف الصوت المسموح باستخدامه باسم
-        song.mp3 إلى مجلد الموقع.
-    </p>
-
-    <div class="message">
-إبراهيم ❤️
-
-عارف إن المفاجأة دي يمكن تكون بسيطة، بس أنا حبيت أعملك حاجة مختلفة، حاجة تكون بتاعتنا إحنا، وتخليك تبتسم وإنت بتفتح كل جزء فيها.
-
-أنا مبسوطة إنك بقيت جزء من أيامي، وإن عندنا ذكريات ومواقف تخصنا إحنا لوحدنا. يمكن مش كل يوم بيكون مثالي، ويمكن ساعات بنختلف أو نفهم بعض غلط، بس ده مش معناه إن اللحظات الحلوة ملهاش قيمة.
-
-أنا مش مستنية منك الكمال، ولا عايزة علاقتنا تكون مجرد كلام حلو. أنا نفسي يكون بينا صدق واهتمام واحترام، وإننا نعرف نتكلم مع بعض حتى لما الأمور تكون صعبة.
-
-نفسي أكون شخص تقدر تحكيله عن يومك، وتشاركه فرحتك وتعبك، وتلاقي عنده حد يسمعك بجد. ونفسي أنا كمان ألاقي معاك نفس الاهتمام والأمان.
-
-بحب تفاصيل كتير في حكايتنا، وبحب إن لسه قدامنا ذكريات جديدة نعملها، وضحك ومواقف نفتكرها بعدين ونبتسم.
-
-وأهم حاجة عايزة أقولها لك: إنت غالي عندي يا إبراهيم، وأنا بتمنى لك كل خير، وبتمنى إننا نفضل دايمًا صريحين مع بعض، ونحافظ على الحاجات الحلوة اللي بينا.
-
-عملتلك الاختبار ده عشان أفرحك، مش عشان الدرجة 😂❤️
-
-بحبك يا إبراهيم.
-
-من لولو 💗
-    </div>
-
-    <button onclick="openFinal()">افتح المفاجأة الأخيرة 🎁</button>
-</section>
-
-<!-- النهاية -->
-<section class="card hidden" id="final">
-    <div class="heart">🎁</div>
-    <h1>مبروك يا إبراهيم!</h1>
-
-    <p>
-        نجحت في الاختبار التاني 😂❤️
-    </p>
-
-    <h2>22 / 7 / 2026</h2>
-
-    <p>
-        تاريخ بداية حكايتنا 💗
-    </p>
-
-    <p>
-        وأحلى حاجة في المفاجأة دي إني عملتها مخصوص عشانك.
-    </p>
-
-    <h2>بحبك ❤️</h2>
-    <p>توقيع: لولو 🎀</p>
-</section>
+</main>
 
 <script>
-const PASSWORD = "22/7/2026";
+const PASSWORD = "21/10/2008";
 
 const questions = [
-    {
-        q: "إحنا ارتبطنا يوم إيه؟",
-        options: ["22/7/2026", "22/8/2026", "21/7/2026"],
-        answer: 0
-    },
-    {
-        q: "إيه أكتر حاجة بتساعد علاقتنا تكمل؟",
-        options: ["العند", "الصدق والاهتمام", "التجاهل"],
-        answer: 1
-    },
-    {
-        q: "لو حصل سوء تفاهم بينا، نعمل إيه؟",
-        options: ["نتكلم ونفهم بعض", "نختفي", "نكابر"],
-        answer: 0
-    },
-    {
-        q: "إيه أهم حاجة وقت الزعل؟",
-        options: ["مين يكسب الخناقة", "نفهم إحساس بعض", "نسكت للأبد"],
-        answer: 1
-    },
-    {
-        q: "الهدية بتكون قيمتها الحقيقية في إيه؟",
-        options: ["سعرها بس", "معناها والاهتمام", "حجمها"],
-        answer: 1
-    },
-    {
-        q: "لو لولو بتحكيلك عن حاجة مضايقاها، الأفضل إيه؟",
-        options: ["أسمعها وأفهمها", "أتجاهلها", "أغير الموضوع فورًا"],
-        answer: 0
-    },
-    {
-        q: "إيه اللي يقوي الثقة بين اتنين؟",
-        options: ["الكلام من غير أفعال", "الصدق والوضوح", "إخفاء كل حاجة"],
-        answer: 1
-    },
-    {
-        q: "لو اختلفنا في الرأي، المفروض إيه؟",
-        options: ["نحترم اختلافنا", "نجرح بعض", "كل واحد يعاند"],
-        answer: 0
-    },
-    {
-        q: "إيه الأحلى في الذكريات؟",
-        options: ["إنها تجمعنا وتفرحنا", "إننا نتجاهلها", "إننا نندم عليها"],
-        answer: 0
-    },
-    {
-        q: "مين اللي عامل المفاجأة دي؟ 😂",
-        options: ["لولو ❤️", "إبراهيم", "المدرس بتاع الرياضة"],
-        answer: 0
-    }
+"إيه أكتر حاجة بتحبها فيا، وإيه اللي خلّاك تتعلق بيا من البداية؟ ❤️",
+
+"لما بكون زعلانة أو تعبانة نفسيًا، بتحس بإيه من جواك، وبتحب تعمل إيه علشان تطمّن عليا؟ 🫂",
+
+"احكيلي عن موقف بينا عمرك ما نسيته، وإيه اللي خلّاه مميز بالنسبالك؟ 🥹",
+
+"إمتى حسيت إنك بتحبني بجد، وإن وجودي في حياتك بقى فارق معاك؟ 💗",
+
+"إيه أكتر حاجة بتخاف عليها في علاقتنا، وإيه اللي ممكن تعمله علشان تحافظ عليها؟ 💌",
+
+"لما بنبعد عن بعض أو مبنتكلمش فترة، إيه اللي بيبقى جواك؟ وإيه أكتر حاجة بتوحشك فيا؟ ❤️",
+
+"لما بنتخانق أو بزعل منك، بتفكر في إيه؟ وإيه اللي بيخليك تحب نتصالح ونرجع كويسين؟ ❤️‍🩹",
+
+"إيه الحاجة اللي نفسك أفهمها عن مشاعرك ناحيتي، بس يمكن مش بتعرف تعبّر عنها بالكلام؟ 💞",
+
+"لما بتفكر في مستقبلنا، بتتمنى علاقتنا تكون عاملة إزاي؟ وإيه اللي نفسك نحققه سوا؟ 🌷",
+
+"بمناسبة عيد ميلادك، عايزاك تتكلم معايا من قلبك: أنا بالنسبالك إيه؟ وإيه الكلام اللي نفسك تقولهولي ومقولتهوش قبل كده؟ 🎂❤️"
 ];
 
-let currentQuestion = 0;
-let score = 0;
-let answered = false;
-
-function showOnly(id) {
-    document.querySelectorAll(".card").forEach(card => {
-        card.classList.add("hidden");
-    });
-    document.getElementById(id).classList.remove("hidden");
-}
+let current = 0;
+let answers = [];
 
 function login() {
-    const name = document.getElementById("username")
-        .value.trim().replace(/\s/g, "");
+  const value = document.getElementById("password").value;
 
-    const password = document.getElementById("password")
-        .value.trim();
-
-    const validNames = ["ابراهيم", "إبراهيم", "ibrahim", "ebrahim"];
-
-    if (validNames.includes(name.toLowerCase()) &&
-        password === PASSWORD) {
-        showOnly("welcome");
-    } else {
-        document.getElementById("loginFeedback").textContent =
-            "الاسم أو الباسورد مش صح، جرّب تاني 😂❤️";
-    }
+  if (value === PASSWORD) {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("quiz").classList.remove("hidden");
+    showQuestion();
+  } else {
+    document.getElementById("loginMessage").textContent =
+      "الباسورد مش صحيح، جرّب تاني يا Abrahem ❤️";
+  }
 }
 
-function startQuiz() {
-    currentQuestion = 0;
-    score = 0;
-    showOnly("quiz");
-    renderQuestion();
-}
+function showQuestion() {
+  document.getElementById("count").textContent =
+    "السؤال " + (current + 1) + " من 10";
 
-function renderQuestion() {
-    answered = false;
+  document.getElementById("question").textContent =
+    questions[current];
 
-    const q = questions[currentQuestion];
+  document.getElementById("bar").style.width =
+    ((current + 1) * 10) + "%";
 
-    document.getElementById("progress").textContent =
-        `السؤال ${currentQuestion + 1} من ${questions.length}`;
-
-    let html = `<div class="question"><h3>${q.q}</h3>`;
-
-    q.options.forEach((option, index) => {
-        html += `
-            <label class="option" id="option${index}">
-                <input type="radio" name="answer" value="${index}">
-                ${option}
-            </label>
-        `;
-    });
-
-    html += "</div>";
-
-    document.getElementById("questionArea").innerHTML = html;
-
-    document.getElementById("feedback").className =
-        "feedback hidden";
-
-    document.getElementById("checkButton").classList.remove("hidden");
-    document.getElementById("nextButton").classList.add("hidden");
-}
-
-function checkAnswer() {
-    if (answered) return;
-
-    const selected = document.querySelector(
-        'input[name="answer"]:checked'
-    );
-
-    if (!selected) {
-        const feedback = document.getElementById("feedback");
-        feedback.className = "feedback bad";
-        feedback.textContent = "اختار إجابة الأول يا إبراهيم 😂";
-        return;
-    }
-
-    answered = true;
-
-    const q = questions[currentQuestion];
-    const chosen = Number(selected.value);
-    const feedback = document.getElementById("feedback");
-
-    document.querySelectorAll(".option input").forEach(input => {
-        input.disabled = true;
-    });
-
-    if (chosen === q.answer) {
-        score++;
-
-        document.getElementById("option" + chosen)
-            .classList.add("correct");
-
-        feedback.className = "feedback good";
-        feedback.textContent = "✅ إجابة صح! عاش يا إبراهيم ❤️";
-    } else {
-        document.getElementById("option" + chosen)
-            .classList.add("wrong");
-
-        document.getElementById("option" + q.answer)
-            .classList.add("correct");
-
-        feedback.className = "feedback bad";
-        feedback.textContent =
-            "❌ إجابة غلط! الإجابة الصحيحة هي: " +
-            q.options[q.answer];
-    }
-
-    document.getElementById("checkButton").classList.add("hidden");
-
-    const nextButton = document.getElementById("nextButton");
-    nextButton.classList.remove("hidden");
-
-    nextButton.textContent =
-        currentQuestion === questions.length - 1
-        ? "شوف نتيجتك ❤️"
-        : "السؤال التالي ➜";
+  document.getElementById("answer").value = "";
+  document.getElementById("message").textContent = "";
 }
 
 function nextQuestion() {
-    if (!answered) return;
+  const answer = document.getElementById("answer").value.trim();
 
-    currentQuestion++;
+  if (!answer) {
+    document.getElementById("message").textContent =
+      "اكتب إجابتك الأول يا Abrahem ❤️";
+    return;
+  }
 
-    if (currentQuestion < questions.length) {
-        renderQuestion();
-    } else {
-        showResult();
-    }
-}
+  answers.push({
+    question: questions[current],
+    answer: answer
+  });
 
-function showResult() {
-    showOnly("result");
+  current++;
 
-    document.getElementById("score").textContent =
-        `${score} / ${questions.length}`;
-
-    let message;
-
-    if (score === 10) {
-        message = "فل مارك! إنت مركز أهو يا إبراهيم 😂💗";
-    } else if (score >= 7) {
-        message = "برافو عليك! نتيجة حلوة جدًا ❤️";
-    } else if (score >= 4) {
-        message = "مش بطال، بس محتاج تركز مع لولو أكتر 😂";
-    } else {
-        message = "واضح إنك محتاج تراجع الحكاية من أولها 😂💗";
-    }
-
-    document.getElementById("resultText").textContent = message;
-}
-
-function openLetter() {
-    showOnly("letter");
-}
-
-function openFinal() {
-    showOnly("final");
+  if (current < questions.length) {
+    showQuestion();
+  } else {
+    document.getElementById("quiz").classList.add("hidden");
+    document.getElementById("letter").classList.remove("hidden");
+  }
 }
 </script>
 
 </body>
-    </html>
+</html>
